@@ -1,0 +1,9 @@
+[submodule "PostgreSQL"]
+	path = PostgreSQL
+	url = https://github.com/yuichi04/PostgreSQL.git
+[submodule "todoapp-api"]
+	path = todoapp-api
+	url = https://github.com/yuichi04/todoapp-api.git
+[submodule "todoapp-client"]
+	path = todoapp-client
+	url = https://github.com/yuichi04/todoapp-client.git
