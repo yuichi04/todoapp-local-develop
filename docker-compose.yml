@@ -1,12 +1,12 @@
 services:
-  frontend:
+  todoapp-client:
     build: ./todoapp-client
     ports:
       - "3000:3000"
     networks:
       - todoapp-network
 
-  backend:
+  todoapp-api:
     build: ./todoapp-api
     ports:
       - "8080:8080"
@@ -15,7 +15,7 @@ services:
     depends_on:
       - db
 
-  db:
+  PostgreSQL:
     build: ./PostgreSQL
     networks:
       - todoapp-network
