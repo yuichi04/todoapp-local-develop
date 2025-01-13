@@ -15,7 +15,7 @@ services:
     depends_on:
       - db
 
-  PostgreSQL:
+  db:
     build: ./PostgreSQL
     networks:
       - todoapp-network
