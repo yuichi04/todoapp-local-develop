@@ -62,6 +62,7 @@ PGADMIN_DEFAULT_PASSWORD=your_password
 
 - フロントエンド: http://localhost:3000
 - バックエンド API: http://localhost:8080
+  - `/test`にアクセスして`Test endpoint working!`が表示されるか確認してください 
 - PgAdmin: http://localhost:5050
   - サーバーログインには`.env`ファイルで設定した`PGADMIN_DEFAULT_PASSWOR`を使用　※PgAdmin のログイン自体はスキップされるようになってます
 
