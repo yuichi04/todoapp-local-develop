@@ -21,6 +21,8 @@ services:
     depends_on:
       db:
         condition: service_healthy
+    volumes:
+      - ./todoapp-api:/todoapp-api
 
   db:
     build: ./PostgreSQL
