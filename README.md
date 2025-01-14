@@ -13,7 +13,7 @@
 ### 1. リポジトリのクローン
 
 ```bash
-git clone <repository-url>
+git clone git@github.com:yuichi04/todoapp-local-develop.git
 cd todoapp-local-develop
 ```
 
