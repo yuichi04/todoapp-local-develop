@@ -9,29 +9,50 @@ services:
   todoapp-api:
     build: ./todoapp-api
     environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PW=postgres
-      - POSTGRES_HOST=db
-      - POSTGRES_PORT=5432
-      - POSTGRES_DB=postgres
-      - GO_ENV=dev
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PW=${POSTGRES_PW}
+      - POSTGRES_HOST=${POSTGRES_HOST}
+      - POSTGRES_PORT=${POSTGRES_PORT}
+      - POSTGRES_DB=${POSTGRES_DB}
+      - GO_ENV=${GO_ENV}
     ports:
       - "8080:8080"
     networks:
       - todoapp-network
     depends_on:
-      - db
+      db:
+        condition: service_healthy
 
   db:
     build: ./PostgreSQL
     environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=postgres
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PW}
+      - POSTGRES_DB=${POSTGRES_DB}
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
     ports:
       - "5432:5432"
     networks:
       - todoapp-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  pgadmin:
+    image: dpage/pgadmin4:6.11
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=${PGADMIN_DEFAULT_EMAIL}
+      - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_DEFAULT_PASSWORD}
+    ports:
+      - "5050:80"
+    networks:
+      - todoapp-network
+    depends_on:
+      db:
+        condition: service_healthy
 
 networks:
   todoapp-network:
