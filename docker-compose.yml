@@ -1,6 +1,8 @@
 services:
   todoapp-client:
     build: ./todoapp-client
+    environment:
+      - REACT_APP_API_URL=${REACT_APP_API_URL}
     ports:
       - "3000:3000"
     networks:
@@ -17,6 +19,7 @@ services:
       - POSTGRES_HOST=${POSTGRES_HOST}
       - POSTGRES_PORT=${POSTGRES_PORT}
       - POSTGRES_DB=${POSTGRES_DB}
+      - CLIENT_URL=${CLIENT_URL}
     ports:
       - "8080:8080"
     networks:
